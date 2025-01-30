@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolExecutorDemo2Activity extends AppCompatActivity {
     private static final String TAG = "ThreadPoolExecutorDemo2Activity";
 
-    private static final long DEFAULT_KEEPALIVE_MILLIS = 10L;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +35,7 @@ public class ThreadPoolExecutorDemo2Activity extends AppCompatActivity {
         var threadPoolExecutor = new ThreadPoolExecutor(
                 5,
                 Integer.MAX_VALUE, // maximum pool size
-                DEFAULT_KEEPALIVE_MILLIS, // keep-alive time
+                10L, // keep-alive time
                 TimeUnit.MILLISECONDS, // time unit for keep-alive
                 new LinkedBlockingQueue<>() // work queue
         );
