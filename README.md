@@ -1,3 +1,8 @@
+# development enviroment
+```
+Android Studio Meerkat Feature Drop | 2024.3.2 Nightly 2025-01-29
+```
+
 # memo
 
 An experiment on thread management while an Android app is running. <br>
