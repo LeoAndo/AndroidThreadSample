@@ -32,7 +32,14 @@ public class NewSingleThreadExecutorDemo2Activity extends AppCompatActivity {
 
         var executorService = Executors.newSingleThreadExecutor(); // 1つのスレッドを持つスレッドプールを作成する
 
-        Runnable beeper = () -> Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
+        Runnable beeper = () -> {
+            // ダミーで重たい処理を行う - START
+            for (var j = 0; j < 1000000; j++) {
+                Math.pow(j, 2);
+            }
+            // ダミーで重たい処理を行う - END
+            Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
+        };
         for (var i = 0; i < 10; i++) {
             executorService.execute(beeper);
         }

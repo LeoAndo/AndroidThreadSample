@@ -22,16 +22,16 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolExecutorDemo1Activity extends AppCompatActivity {
     private static final String TAG = "ThreadPoolExecutorDemo1Activity";
 
-
-    // java.util.concurrent.ScheduledThreadPoolExecutor.DEFAULT_KEEPALIVE_MILLISを参考にした。
-    private static final long DEFAULT_KEEPALIVE_MILLIS = 10L;
-    /*
-    コアプールサイズ (core pool size): スレッドプールが常に保持するスレッドの最小数です。タスクが追加されると、まずこの数までスレッドが作成されます。コアプールサイズに達していない場合、新しいタスクは新しいスレッドで実行されます。この例では、コアプールサイズは5に設定されています。
-    最大プールサイズ (maximum pool size): スレッドプールが保持できるスレッドの最大数です。コアプールサイズを超えるタスクが追加されると、最大プールサイズに達するまで新しいスレッドが作成されます。この例では、最大プールサイズは10に設定されています。
-    キープアライブ時間 (keep-alive time): コアプールサイズを超えるアイドル状態のスレッドが終了するまでの時間です。スレッドがアイドル状態になった後、この時間が経過するとスレッドは終了されます。この例では、キープアライブ時間は60秒に設定されています
+    /**
+     * java.util.concurrent.ScheduledThreadPoolExecutor.DEFAULT_KEEPALIVE_MILLISを参考にした。
      */
-    // ThreadPoolExecutorの各引数の設定値はjava.util.concurrent.Executors#newSingleThreadExecutor()と、
-    // java.util.concurrent.Executors.newScheduledThreadPool(int)の内部実装を参考にしている。
+    private static final long DEFAULT_KEEPALIVE_MILLIS = 0L;
+    /**
+     * コアプールサイズ (core pool size): スレッドプールが常に保持するスレッドの最小数です。タスクが追加されると、まずこの数までスレッドが作成されます。コアプールサイズに達していない場合、新しいタスクは新しいスレッドで実行されます。
+     * 最大プールサイズ (maximum pool size): 重たい処理を入れても、コアプールサイズを超えることはなかった.java.util.concurrentのnewSingleThreadExecutorやnewScheduledThreadPoolの内部実装と合わせておく
+     * キープアライブ時間 (keep-alive time): コアプールサイズを超えるアイドル状態のスレッドが終了するまでの時間です。スレッドがアイドル状態になった後、この時間が経過するとスレッドは終了されます。
+     * ThreadPoolExecutorの各引数の設定値はjava.util.concurrent.Executors#newSingleThreadExecutor()と、java.util.concurrent.Executors.newScheduledThreadPool(int)の内部実装を参考にしている。
+     */
     @NonNull
     private final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
             5, // core pool size
@@ -51,9 +51,15 @@ public class ThreadPoolExecutorDemo1Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        for (var i = 0; i < 10; i++) {
-            Runnable beeper = () -> Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
+        for (var i = 0; i < 100; i++) {
+            Runnable beeper = () -> {
+                // ダミーで重たい処理を行う - START
+                for (var j = 0; j < 1000000; j++) {
+                    Math.pow(j, 2);
+                }
+                // ダミーで重たい処理を行う - END
+                Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
+            };
             // 即時実行する
             threadPoolExecutor.execute(beeper);
         }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -22,6 +21,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class ScheduledExecutorServiceDemo1Activity extends AppCompatActivity {
     private static final String TAG = "ScheduledExecutorServiceDemo1Activity";
+    /**
+     * ScheduledExecutorServiceは、スレッドプール内の空いているスレッドを使用して、登録されたタスク（この場合はbeeper）を処理する。
+     * スレッドプール内のスレッドが空いていない場合は、スレッドが空くまで待機する。
+     */
     @NonNull
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
 
@@ -36,14 +39,14 @@ public class ScheduledExecutorServiceDemo1Activity extends AppCompatActivity {
             return insets;
         });
 
-        // ScheduledExecutorServiceは、
-        // スレッドプール内の空いているスレッドを使用して、登録されたタスク（この場合はbeeper）を処理する。
-        // スレッドプール内のスレッドが空いていない場合は、スレッドが空くまで待機する。
         for (var i = 0; i < 10; i++) {
             Runnable beeper = () -> {
+                // ダミーで重たい処理を行う - START
+                for (var j = 0; j < 1000000; j++) {
+                    Math.pow(j, 2);
+                }
+                // ダミーで重たい処理を行う - END
                 Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
-                // ここでUIの処理を行なっても問題は発生しなかった
-                findViewById(R.id.main).setVisibility(View.INVISIBLE);
             };
             var beeperHandle = scheduler.scheduleWithFixedDelay(beeper, 3, 5, TimeUnit.SECONDS);
             Runnable canceller = () -> {

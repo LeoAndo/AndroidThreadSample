@@ -4,7 +4,19 @@ An experiment on thread management while an Android app is running. <br>
 The results of the investigation are written in the comments of each Activity. <br>
 The results will be organized later and compiled in the README. <br>
 
-# capture: Emulator Medium Phone API 35
+<img src ="./memo.png" width="50%">
+
+# environment: Emulator Medium Phone API 35
+
+```shell
+adb shell cat /proc/sys/kernel/pid_max
+```
+
+You will get the following output, where `32768` is the maximum number of processes(my application).
+
+```shell
+32768
+````
 
 <img src ="./img.png" width="50%">
 

@@ -1,6 +1,5 @@
 package com.example.androidthreadsample;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;

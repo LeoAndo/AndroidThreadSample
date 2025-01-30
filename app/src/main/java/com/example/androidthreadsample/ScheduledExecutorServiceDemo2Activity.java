@@ -33,7 +33,14 @@ public class ScheduledExecutorServiceDemo2Activity extends AppCompatActivity {
 
         var scheduler = Executors.newScheduledThreadPool(5);
         for (var i = 0; i < 10; i++) {
-            Runnable beeper = () -> Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
+            Runnable beeper = () -> {
+                // ダミーで重たい処理を行う - START
+                for (var j = 0; j < 1000000; j++) {
+                    Math.pow(j, 2);
+                }
+                // ダミーで重たい処理を行う - END
+                Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
+            };
             var beeperHandle = scheduler.scheduleWithFixedDelay(beeper, 3, 5, TimeUnit.SECONDS);
             Runnable canceller = () -> {
                 Log.d(TAG, "cancel!");
