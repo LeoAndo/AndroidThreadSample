@@ -25,11 +25,11 @@ public class ThreadPoolExecutorDemo1Activity extends AppCompatActivity {
     /**
      * java.util.concurrent.ScheduledThreadPoolExecutor.DEFAULT_KEEPALIVE_MILLISを参考にした。
      */
-    private static final long DEFAULT_KEEPALIVE_MILLIS = 0L;
+    private static final long DEFAULT_KEEPALIVE_MILLIS = 10L;
     /**
      * コアプールサイズ (core pool size): スレッドプールが常に保持するスレッドの最小数です。タスクが追加されると、まずこの数までスレッドが作成されます。コアプールサイズに達していない場合、新しいタスクは新しいスレッドで実行されます。
      * 最大プールサイズ (maximum pool size): 重たい処理を入れても、コアプールサイズを超えることはなかった.java.util.concurrentのnewSingleThreadExecutorやnewScheduledThreadPoolの内部実装と合わせておく
-     * キープアライブ時間 (keep-alive time): コアプールサイズを超えるアイドル状態のスレッドが終了するまでの時間です。スレッドがアイドル状態になった後、この時間が経過するとスレッドは終了されます。
+     * キープアライブ時間 (keep-alive time): コアプールサイズを超えるアイドル状態のスレッドが終了するまでの時間。
      * ThreadPoolExecutorの各引数の設定値はjava.util.concurrent.Executors#newSingleThreadExecutor()と、java.util.concurrent.Executors.newScheduledThreadPool(int)の内部実装を参考にしている。
      */
     @NonNull
