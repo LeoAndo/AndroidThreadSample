@@ -73,7 +73,7 @@ public class ThreadPoolExecutorDemo1Activity extends AppCompatActivity {
         threadPoolExecutor.shutdown();
     }
 
-    public static void start(Context context) {
+    static void start(Context context) {
         Intent starter = new Intent(context, ThreadPoolExecutorDemo1Activity.class);
         context.startActivity(starter);
     }

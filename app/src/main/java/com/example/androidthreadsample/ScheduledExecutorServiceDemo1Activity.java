@@ -71,7 +71,7 @@ public class ScheduledExecutorServiceDemo1Activity extends AppCompatActivity {
         scheduler.shutdown();
     }
 
-    public static void start(Context context) {
+    static void start(Context context) {
         Intent starter = new Intent(context, ScheduledExecutorServiceDemo1Activity.class);
         context.startActivity(starter);
     }

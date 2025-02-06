@@ -69,7 +69,7 @@ public class ThreadPoolExecutorDemo2Activity extends AppCompatActivity {
         Log.d(TAG, "onDestroy: IN");
     }
 
-    public static void start(Context context) {
+    static void start(Context context) {
         Intent starter = new Intent(context, ThreadPoolExecutorDemo2Activity.class);
         context.startActivity(starter);
     }

@@ -60,7 +60,7 @@ public class NewSingleThreadExecutorDemo1Activity extends AppCompatActivity {
         executorService.shutdown();
     }
 
-    public static void start(Context context) {
+    static void start(Context context) {
         Intent starter = new Intent(context, NewSingleThreadExecutorDemo1Activity.class);
         context.startActivity(starter);
     }
