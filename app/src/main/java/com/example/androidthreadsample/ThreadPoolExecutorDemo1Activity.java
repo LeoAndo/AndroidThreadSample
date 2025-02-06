@@ -51,15 +51,16 @@ public class ThreadPoolExecutorDemo1Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        final Runnable beeper = () -> {
+            // ダミーで重たい処理を行う - START
+            for (var j = 0; j < 1000000; j++) {
+                Math.pow(j, 2);
+            }
+            // ダミーで重たい処理を行う - END
+            Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
+        };
         for (var i = 0; i < 100; i++) {
-            Runnable beeper = () -> {
-                // ダミーで重たい処理を行う - START
-                for (var j = 0; j < 1000000; j++) {
-                    Math.pow(j, 2);
-                }
-                // ダミーで重たい処理を行う - END
-                Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
-            };
             // 即時実行する
             threadPoolExecutor.execute(beeper);
         }

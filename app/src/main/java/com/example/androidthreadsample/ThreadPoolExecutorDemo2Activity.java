@@ -32,6 +32,15 @@ public class ThreadPoolExecutorDemo2Activity extends AppCompatActivity {
             return insets;
         });
 
+        final Runnable beeper = () -> {
+            // ダミーで重たい処理を行う - START
+            for (var j = 0; j < 1000000; j++) {
+                Math.pow(j, 2);
+            }
+            // ダミーで重たい処理を行う - END
+
+            Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
+        };
         var threadPoolExecutor = new ThreadPoolExecutor(
                 5,
                 Integer.MAX_VALUE, // maximum pool size
@@ -41,15 +50,6 @@ public class ThreadPoolExecutorDemo2Activity extends AppCompatActivity {
         );
 
         for (var i = 0; i < 100; i++) {
-            Runnable beeper = () -> {
-                // ダミーで重たい処理を行う - START
-                for (var j = 0; j < 1000000; j++) {
-                    Math.pow(j, 2);
-                }
-                // ダミーで重たい処理を行う - END
-
-                Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
-            };
             // 即時実行する
             threadPoolExecutor.execute(beeper);
         }
