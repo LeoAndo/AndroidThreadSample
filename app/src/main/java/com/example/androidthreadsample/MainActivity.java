@@ -49,5 +49,10 @@ public class MainActivity extends AppCompatActivity {
             // ここに処理を記述
             ThreadPoolExecutorDemo2Activity.start(this);
         });
+
+        findViewById(R.id.btn_7).setOnClickListener(v -> {
+            // ここに処理を記述
+            NewFixedThreadPoolActivity.start(this);
+        });
     }
 }
