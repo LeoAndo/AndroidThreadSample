@@ -26,7 +26,7 @@ public class ScheduledExecutorServiceDemo1Activity extends AppCompatActivity {
      * スレッドプール内のスレッドが空いていない場合は、スレッドが空くまで待機する。
      */
     @NonNull
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(4);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class ScheduledExecutorServiceDemo1Activity extends AppCompatActivity {
     }
 
     static void start(Context context) {
-        Intent starter = new Intent(context, ScheduledExecutorServiceDemo1Activity.class);
+        var starter = new Intent(context, ScheduledExecutorServiceDemo1Activity.class);
         context.startActivity(starter);
     }
 }

@@ -39,7 +39,7 @@ public class ScheduledExecutorServiceDemo2Activity extends AppCompatActivity {
             // ダミーで重たい処理を行う - END
             Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
         };
-        var scheduler = Executors.newScheduledThreadPool(5);
+        var scheduler = Executors.newScheduledThreadPool(4);
         for (var i = 0; i < 10; i++) {
             var beeperHandle = scheduler.scheduleWithFixedDelay(beeper, 3, 5, TimeUnit.SECONDS);
             Runnable canceller = () -> {
@@ -56,7 +56,6 @@ public class ScheduledExecutorServiceDemo2Activity extends AppCompatActivity {
      * u0_a232      26494 26523   326   16664056 145468 0                   0 S pool-2-thread-2
      * u0_a232      26494 26524   326   16664056 145468 0                   0 S pool-2-thread-3
      * u0_a232      26494 26525   326   16664056 145468 0                   0 S pool-2-thread-4
-     * u0_a232      26494 26526   326   16664056 145468 0                   0 S pool-2-thread-5
      */
     @Override
     protected void onDestroy() {
@@ -65,7 +64,7 @@ public class ScheduledExecutorServiceDemo2Activity extends AppCompatActivity {
     }
 
     static void start(Context context) {
-        Intent starter = new Intent(context, ScheduledExecutorServiceDemo2Activity.class);
+        var starter = new Intent(context, ScheduledExecutorServiceDemo2Activity.class);
         context.startActivity(starter);
     }
 }

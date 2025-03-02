@@ -42,7 +42,7 @@ public class ThreadPoolExecutorDemo2Activity extends AppCompatActivity {
             Log.d(TAG, "beep thread name: " + Thread.currentThread().getName());
         };
         var threadPoolExecutor = new ThreadPoolExecutor(
-                5,
+                4,
                 Integer.MAX_VALUE, // maximum pool size
                 10L, // keep-alive time
                 TimeUnit.MILLISECONDS, // time unit for keep-alive
@@ -61,7 +61,6 @@ public class ThreadPoolExecutorDemo2Activity extends AppCompatActivity {
      * u0_a232      26975 27004   326   16863420 145020 0                   0 S pool-2-thread-2
      * u0_a232      26975 27005   326   16863420 145020 0                   0 S pool-2-thread-3
      * u0_a232      26975 27006   326   16863420 145020 0                   0 S pool-2-thread-4
-     * u0_a232      26975 27007   326   16863420 145020 0                   0 S pool-2-thread-5
      */
     @Override
     protected void onDestroy() {
@@ -70,7 +69,7 @@ public class ThreadPoolExecutorDemo2Activity extends AppCompatActivity {
     }
 
     static void start(Context context) {
-        Intent starter = new Intent(context, ThreadPoolExecutorDemo2Activity.class);
+        var starter = new Intent(context, ThreadPoolExecutorDemo2Activity.class);
         context.startActivity(starter);
     }
 }

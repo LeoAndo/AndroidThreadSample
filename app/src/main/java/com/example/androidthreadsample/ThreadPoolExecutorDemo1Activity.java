@@ -34,7 +34,7 @@ public class ThreadPoolExecutorDemo1Activity extends AppCompatActivity {
      */
     @NonNull
     private final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-            5, // core pool size
+            4, // core pool size
             Integer.MAX_VALUE, // maximum pool size
             DEFAULT_KEEPALIVE_MILLIS, // keep-alive time
             TimeUnit.MILLISECONDS, // time unit for keep-alive
@@ -74,7 +74,7 @@ public class ThreadPoolExecutorDemo1Activity extends AppCompatActivity {
     }
 
     static void start(Context context) {
-        Intent starter = new Intent(context, ThreadPoolExecutorDemo1Activity.class);
+        var starter = new Intent(context, ThreadPoolExecutorDemo1Activity.class);
         context.startActivity(starter);
     }
 }

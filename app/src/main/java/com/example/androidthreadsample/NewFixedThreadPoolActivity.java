@@ -18,10 +18,11 @@ import java.util.concurrent.Executors;
 public class NewFixedThreadPoolActivity extends AppCompatActivity {
     private static final String TAG = "NewFixedThreadPoolActivity";
     /**
-     * 10個のスレッドを持つスレッドプールを作成する
+     * 4個のスレッドを持つスレッドプールを作成する.
+     * android Frameworkやjetpackライブらちの内部実装を参考にすると、3, 4の設定が多いのでそれに合わせる
      */
     @NonNull
-    private final ExecutorService executorService = Executors.newFixedThreadPool(10);
+    private final ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
