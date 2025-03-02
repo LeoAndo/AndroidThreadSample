@@ -49,4 +49,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NewFixedThreadPoolActivity" />
+
+    <Button
+        android:id="@+id/btn_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MainExecutorActivity" />
 </LinearLayout>
